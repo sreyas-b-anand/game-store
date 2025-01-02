@@ -40,3 +40,7 @@ artifacts/
 
 # .NET Core Build Tools
 .vscode/
+
+
+#env
+*.env

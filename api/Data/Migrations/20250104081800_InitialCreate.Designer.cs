@@ -11,7 +11,7 @@ using api.Data;
 namespace api.Data.Migrations
 {
     [DbContext(typeof(GameStoreContext))]
-    [Migration("20250102070226_InitialCreate")]
+    [Migration("20250104081800_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -58,7 +58,7 @@ namespace api.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Genres");
+                    b.ToTable("Genre");
                 });
 
             modelBuilder.Entity("api.Entities.Game", b =>

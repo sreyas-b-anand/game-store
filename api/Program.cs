@@ -8,12 +8,12 @@ var builder = WebApplication.CreateBuilder(args);
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 
+var connstring = builder.Configuration.GetConnectionString("DefaultConnection");
+builder.Services.AddSqlite<GameStoreContext>(connstring);
+
+
 
 var app = builder.Build();
-
-builder.Services.AddDbContext<GameStoreContext>(options =>
-    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"))); // Ensure the connection string exists.
-
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -24,6 +24,6 @@ app.UseHttpsRedirection();
 app.MapGet("/", () => "Hello World");
 
 app.MapEndpoints();
-app.MigrateDb();
+//app.MigrateDb();
 app.Run();
 

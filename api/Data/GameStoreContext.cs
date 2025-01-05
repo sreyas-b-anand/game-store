@@ -1,13 +1,14 @@
-using System;
-using Microsoft.EntityFrameworkCore;
+
 using api.Entities;
+using Microsoft.EntityFrameworkCore;
 
-namespace api.Data
+namespace api.Data;
+
+public class GameStoreContext(DbContextOptions<GameStoreContext> options) : DbContext(options)
 {
-    public class GameStoreContext(DbContextOptions<GameStoreContext> options) : DbContext(options)
-    {
-        public DbSet<Game> Games { get; set; } = null!;
+    public DbSet<Game> Games  => Set<Game>();
 
-        public DbSet<Genre> Genres { get; set; } = null!;
-    }
+    public DbSet<Genre> Genre => Set<Genre>();
+
+
 }

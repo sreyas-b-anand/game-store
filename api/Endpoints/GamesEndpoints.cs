@@ -1,5 +1,7 @@
 using System;
+using api.Data;
 using api.Dtos;
+using api.Entities;
 
 namespace api.Endpoints;
 
@@ -30,12 +32,19 @@ public static class GamesEndpoints
         }).WithName("GetGameById");
 
         //POST 
-        group.MapPost("/", (CreateGameDto gameDto) =>
+        group.MapPost("/", (CreateGameDto newgame , GameStoreContext dbContext) =>
         {
            
-            games.Add(new GameDto(games.Count + 1, gameDto.Name, gameDto.Genre, gameDto.Price, gameDto.ReleaseDate));
-
-            return Results.StatusCode(200);
+            Game game = new(){
+                Name = newgame.Name,
+                //Genre = dbContext.Genres.Find(newgame.GenreId),
+                GenreId = newgame.GenreId,
+                Price = newgame.Price,
+                ReleaseDate = newgame.ReleaseDate
+        };
+        dbContext.Games.Add(game);
+        dbContext.SaveChanges();
+            return Results.Json(game);
         });
 
         //PUT

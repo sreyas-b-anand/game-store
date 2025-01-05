@@ -12,7 +12,7 @@ namespace api.Data.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Genres",
+                name: "Genre",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
@@ -21,7 +21,7 @@ namespace api.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Genres", x => x.Id);
+                    table.PrimaryKey("PK_Genre", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -39,9 +39,9 @@ namespace api.Data.Migrations
                 {
                     table.PrimaryKey("PK_Games", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Games_Genres_GenreId",
+                        name: "FK_Games_Genre_GenreId",
                         column: x => x.GenreId,
-                        principalTable: "Genres",
+                        principalTable: "Genre",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -59,7 +59,7 @@ namespace api.Data.Migrations
                 name: "Games");
 
             migrationBuilder.DropTable(
-                name: "Genres");
+                name: "Genre");
         }
     }
 }

@@ -1,3 +1,4 @@
+
 using api.Data;
 using api.Endpoints;
 using Microsoft.EntityFrameworkCore;
@@ -23,7 +24,10 @@ app.UseHttpsRedirection();
 
 app.MapGet("/", () => "Hello World");
 
+
 app.MapEndpoints();
+
 //app.MigrateDb();
+
 app.Run();
 
